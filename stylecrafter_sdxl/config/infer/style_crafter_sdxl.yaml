@@ -1,0 +1,31 @@
+model:
+  pretrained_model_name_or_path: path/to/sdxl
+  image_encoder_path: path/to/stylecrafter-sdxl/image_encoder
+  model: 
+    target: models.stylecrafter.StyleCrafter
+    params:
+      scale: 1.0
+      use_norm: true
+      text_dim: 2048
+      style_dim: 2048
+      image_context_config:
+        target: models.encoder.QueryTransformer
+        params:
+          embedding_dim: 1280
+          output_dim: 2048
+          num_heads: 20
+          num_queries: 16
+          n_layers: 4
+      scale_predictor_config:
+        target: models.encoder.QueryTransformer
+        params:
+          embedding_dim: 512
+          output_dim: 512
+          num_heads: 8
+          num_queries: 70
+          n_layers: 2
+
+pretrained: path/to/stylecrafter-sdxl/stylecrafter/stylecrafter_sdxl.ckpt
+height: 1024
+width: 1024
+steps: 50
