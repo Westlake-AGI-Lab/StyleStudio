@@ -1,9 +1,9 @@
 <p align="center">
   <h1 align="center">StyleStudio: Text-Driven Style Transfer with Selective Control of Style Elements</h1>
   <p align="center">
-    <strong>Mingkun Lei</strong><sup>1</sup>
+    <a href="https://github.com/MingkunLei"><strong>Mingkun Lei</strong></a><sup>1</sup>
     &nbsp;&nbsp;
-    <strong>Xue Song</strong><sup>2</sup>
+    <a href="https://scholar.google.com/citations?user=M6CSZVsAAAAJ&hl=zh-CN&oi=ao"><strong>Xue Song</strong></a><sup>2</sup>
     &nbsp;&nbsp;
     <a href="https://beierzhu.github.io/"><strong>Beier Zhu</strong></a><sup>1, 3</sup>
     &nbsp;&nbsp;
@@ -12,7 +12,7 @@
     <a href="https://icoz69.github.io/"><strong>Chi Zhang</strong></a><sup>1✉</sup>
     <br>
     <sup>1</sup>AGI Lab, Westlake University,</span>&nbsp;
-    <sup>2</sup>FuDan University,</span>&nbsp;
+    <sup>2</sup>Fudan University,</span>&nbsp;
     <sup>3</sup>Nanyang Technological University</span>&nbsp;
     <br>
     <sup>4</sup>The Hong Kong University of Science and Technology (Guangzhou)</span>&nbsp;
@@ -28,6 +28,7 @@
 
 ## News and Update
 - __[2024.12.12]__ 🔥🔥We release the code.
+- __[2024.12.19]__ 📝📝We have summarized the recent developments in [style transfer](https://github.com/MingkunLei/Awesome-Style-Transfer-with-Diffusion-Models). And we will continue to update.
 
 ## Abstract
 Text-driven style transfer aims to merge the style of a reference image with content described by a text prompt.  Recent advancements in text-to-image models have improved the nuance of style transformations, yet significant challenges remain, particularly with overfitting to reference styles, limiting stylistic control, and misaligning with textual content.
@@ -152,6 +153,7 @@ python gradio/app.py
 
 
 ## Related Links
+* [Style Transfer with Diffusion Models](https://github.com/MingkunLei/Awesome-Style-Transfer-with-Diffusion-Models): A paper collection of recent style transfer methods with diffusion models.
 * [CSGO: Content-Style Composition in Text-to-Image Generation](https://github.com/instantX-research/CSGO)
 * [InstantStyle: Free Lunch towards Style-Preserving in Text-to-Image Generation](https://github.com/instantX-research/InstantStyle)
 * [StyleCrafter-SDXL](https://github.com/GongyeLiu/StyleCrafter-SDXL)
