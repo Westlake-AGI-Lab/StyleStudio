@@ -1,5 +1,5 @@
 <p align="center">
-  <h1 align="center">StyleStudio: Text-Driven Style Transfer with Selective Control of Style Elements</h1>
+  <h1 align="center">StyleStudio: Text-Driven Style Transfer with Selective Control of Style Elements<br><small>CVPR 2025</small></h1>
   <p align="center">
     <a href="https://github.com/MingkunLei"><strong>Mingkun Lei</strong></a><sup>1</sup>
     &nbsp;&nbsp;
