@@ -867,27 +867,25 @@ class CSGO(IPAdapterXL_CS):
 
 class StyleStudio_Adapter(CSGO):
     def __init__(self, sd_pipe, image_encoder_path, ip_ckpt, device,
-                 num_style_tokens=4,
-                 target_style_blocks=["block"], 
-                 controlnet_adapter=False,
-                 controlnet_target_content_blocks=None,
-                 controlnet_target_style_blocks=None,
-                 style_model_resampler=False,
-                 fuAttn=False,
-                 fuSAttn=False,
-                 fuIPAttn=False,
-                 fuScale=0,
-                 adainIP=False,
-                 end_fusion=0,
-                 save_attn_map=False,
+                num_style_tokens=4,
+                target_style_blocks=["block"], 
+                controlnet_adapter=False,
+                controlnet_target_content_blocks=None,
+                controlnet_target_style_blocks=None,
+                style_model_resampler=False,
+                fuAttn=False,
+                fuSAttn=False,
+                fuIPAttn=False,
+                fuScale=0,
+                adainIP=False,
+                end_fusion=0,
+                save_attn_map=False,
                 ):
         self.fuAttn = fuAttn
         self.fuSAttn = fuSAttn
         self.fuIPAttn = fuIPAttn
         self.adainIP = adainIP
         self.fuScale = fuScale
-        # if self.adainIP:
-        #     print("use the cross modal adain")
         if self.fuSAttn:
             print(f"hijack Self AttnMap in {end_fusion} steps")
         if self.fuAttn:
@@ -923,7 +921,7 @@ class StyleStudio_Adapter(CSGO):
         self.clip_image_processor = CLIPImageProcessor()
         # image proj model
         self.style_image_proj_model = self.init_proj(self.num_style_tokens, content_or_style_='style',
-                                                     model_resampler=self.style_model_resampler)
+                                                    model_resampler=self.style_model_resampler)
         self.load_ip_adapter()
 
     def set_ip_adapter(self):
@@ -1008,7 +1006,7 @@ class StyleStudio_Adapter(CSGO):
     
     def set_scale(self, style_scale):
         for attn_processor in self.pipe.unet.attn_processors.values():
-            if isinstance(attn_processor, IP_FuAd_AttnProcessor):
+            if isinstance(attn_processor, IP_FuAd_AttnProcessor_exp):
                 if attn_processor.style is True:
                     attn_processor.style_scale = style_scale
                     # print('style_scale:',style_scale)
@@ -1120,14 +1118,20 @@ class StyleStudio_Adapter(CSGO):
             style_image_embeds=None,
             num_inference_steps=30,
             end_fusion=20,
-            cross_modal_adain=True,
-            use_SAttn=True,
+            cross_modal_adain=None,
+            use_SAttn=None,
             **kwargs,
     ):
+        if end_fusion != self.end_fusion:
+            self.set_endFusion(end_T = end_fusion)
+        if cross_modal_adain != self.adainIP:
+            print("enable the cross modal adain!")
+            self.set_adain(use_CMA=cross_modal_adain)
+        if use_SAttn != self.fuSAttn:
+            print("enable the Teacher Model!")
+            assert num_samples==2
+            self.set_SAttn(use_SAttn=use_SAttn)
         
-        self.set_endFusion(end_T = end_fusion)
-        self.set_adain(use_CMA=cross_modal_adain)
-        self.set_SAttn(use_SAttn=use_SAttn)
         self.set_num_inference_step(num_T=num_inference_steps)
 
         num_prompts = 1 if isinstance(pil_style_image, Image.Image) else len(pil_style_image)
@@ -1162,7 +1166,7 @@ class StyleStudio_Adapter(CSGO):
         style_image_prompt_embeds = style_image_prompt_embeds.view(bs_embed * num_samples, seq_style_len, -1)
         uncond_style_image_prompt_embeds = uncond_style_image_prompt_embeds.repeat(1, num_samples, 1)
         uncond_style_image_prompt_embeds = uncond_style_image_prompt_embeds.view(bs_embed * num_samples, seq_style_len,
-                                                                                 -1)
+                                                                                -1)
 
         with torch.inference_mode():
             (
@@ -1179,7 +1183,7 @@ class StyleStudio_Adapter(CSGO):
             prompt_embeds = torch.cat([prompt_embeds, style_image_prompt_embeds], dim=1)
             negative_prompt_embeds = torch.cat([negative_prompt_embeds,
                                                 uncond_style_image_prompt_embeds],
-                                               dim=1)
+                                                dim=1)
 
         images = self.pipe(
             prompt_embeds=prompt_embeds,

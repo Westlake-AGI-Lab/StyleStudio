@@ -50,17 +50,21 @@ def main(args):
     seed = 42
     generator = torch.Generator("cuda").manual_seed(seed)
     if args.fuAttn or args.fuSAttn or args.fuIPAttn:
+        # for teacher model
         num_sample=2
     else:
         num_sample=1 
+    
+    if args.adainIP:
+        print("enable cross modal adain")
+    
     if num_sample == 2:
         init_latents = torch.randn((1, 4, 128, 128), generator=generator, device="cuda", dtype=torch.float16)
         init_latents = init_latents.repeat(num_sample, 1, 1, 1)
         assert torch.equal(init_latents[0], init_latents[1]) is True
-        print("use the cross modal adain and teacher model")
+        print("enable teacher model")
     else:
         init_latents = torch.randn((num_sample, 4, 128, 128), generator=generator, device="cuda", dtype=torch.float16)
-        print("only use the cross modal adain")
     
     style_path = args.style_path
     prompt = args.prompt
