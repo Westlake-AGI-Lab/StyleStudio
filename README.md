@@ -1,8 +1,12 @@
 <p align="center">
+<<<<<<< HEAD
   <h1 align="center">
   StyleStudio: Text-Driven Style Transfer with Selective Control of Style Elements<br>
   <small>CVPR 2025</small>
   </h1>
+=======
+  <h1 align="center">StyleStudio: Text-Driven Style Transfer with Selective Control of Style Elements<br><small>CVPR 2025</small></h1>
+>>>>>>> a1bb47f03781400fae21bb19786452bb1851512c
   <p align="center">
     <a href="https://github.com/MingkunLei"><strong>Mingkun Lei</strong></a><sup>1</sup>
     &nbsp;&nbsp;
