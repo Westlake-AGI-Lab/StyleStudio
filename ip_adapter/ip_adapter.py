@@ -1124,10 +1124,10 @@ class StyleStudio_Adapter(CSGO):
     ):
         if end_fusion != self.end_fusion:
             self.set_endFusion(end_T = end_fusion)
-        if cross_modal_adain != self.adainIP:
+        if cross_modal_adain is not None and cross_modal_adain != self.adainIP:
             print("enable the cross modal adain!")
             self.set_adain(use_CMA=cross_modal_adain)
-        if use_SAttn != self.fuSAttn:
+        if use_SAttn is not None and use_SAttn != self.fuSAttn:
             print("enable the Teacher Model!")
             assert num_samples==2
             self.set_SAttn(use_SAttn=use_SAttn)
