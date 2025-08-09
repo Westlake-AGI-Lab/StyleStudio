@@ -165,14 +165,12 @@ python gradio/app.py
 ## BibTeX
 If you find our repo helpful, please consider leaving a star or cite our paper :)
 ```bibtex
-@misc{lei2024stylestudiotextdrivenstyletransfer,
-      title={StyleStudio: Text-Driven Style Transfer with Selective Control of Style Elements}, 
-      author={Mingkun Lei and Xue Song and Beier Zhu and Hao Wang and Chi Zhang},
-      year={2024},
-      eprint={2412.08503},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV},
-      url={https://arxiv.org/abs/2412.08503}, 
+@inproceedings{lei2025stylestudio,
+  title={StyleStudio: Text-Driven Style Transfer with Selective Control of Style Elements},
+  author={Lei, Mingkun and Song, Xue and Zhu, Beier and Wang, Hao and Zhang, Chi},
+  booktitle={Proceedings of the Computer Vision and Pattern Recognition Conference},
+  pages={23443--23452},
+  year={2025}
 }
 ```
 
